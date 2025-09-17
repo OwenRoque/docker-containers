@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mi App - Frontend</title>
+</head>
+<body>
+<h1>Frontend: Hola desde Nginx en Docker Usando Contenedores</h1>
+<p id="api">Cargando mensaje del backend...</p>
+
+<script>
+    // Llama directamente al backend en el puerto 5000 (mapeado en docker-compose)
+    fetch('http://localhost:5000/message')
+        .then(r => r.json())
+        .then(d => {
+            document.getElementById('api').innerText = 'Backend dice: ' + d.message;
+        })
+        .catch(e => {
+            document.getElementById('api').innerText = 'No se pudo contactar al backend.';
+        });
+</script>
+</body>
+</html>
